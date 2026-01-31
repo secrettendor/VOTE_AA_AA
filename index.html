@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VOTE FOR MUHLACH TWINS</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6e3c8;
+  overflow: hidden;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+iframe {
+  width: 100%;
+  height: 360px;
+  border-radius: 14px;
+  border: 1px solid #e0caa5;
+  background: #fff;
+}
+
+/* BLUR OVERLAY */
+#shield {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 9998;
+}
+
+/* WATERMARK */
+#wm {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 14px;
+  opacity: .18;
+  color: #000;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  transform: rotate(-15deg);
+}
+
+#wm div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="shield"></div>
+<div id="wm"></div>
+
+<div class="grid">
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+  <iframe src="https://vote-kappa-seven.vercel.app/"></iframe>
+</div>
+
+<script>
+/* ========= BLUR ON TAB SWITCH ========= */
+const shield = document.getElementById("shield");
+document.addEventListener("visibilitychange", () => {
+  shield.style.opacity = document.hidden ? "1" : "0";
+});
+
+/* ========= WATERMARK ========= */
+const wm = document.getElementById("wm");
+const id = Math.random().toString(36).slice(2, 8);
+const stamp = `ASHDRES • ${id} • ${new Date().toLocaleTimeString()}`;
+
+for (let i = 0; i < 24; i++) {
+  const d = document.createElement("div");
+  d.textContent = stamp;
+  wm.appendChild(d);
+}
+
+/* ========= MOVE WATERMARK ========= */
+setInterval(() => {
+  wm.style.transform = `rotate(${Math.random()*10 - 5}deg)`;
+}, 3000);
+</script>
+
+</body>
+</html>
